@@ -63,7 +63,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // ── Admin routes ───────────────────────────────────────────────────────────
-  if (ADMIN_PROTECTED.some((p) => pathname.startsWith(p))) {
+  if (pathname === "/admin" || (pathname.startsWith("/admin/") && pathname !== "/admin/login")) {
     const token = request.cookies.get(COOKIE_ADMIN)?.value;
     if (!token) {
       return NextResponse.redirect(new URL("/admin/login", request.url));
@@ -73,6 +73,16 @@ export async function middleware(request: NextRequest) {
       const response = NextResponse.redirect(new URL("/admin/login", request.url));
       response.cookies.delete(COOKIE_ADMIN);
       return response;
+    }
+  }
+
+  if (pathname === "/admin/login") {
+    const token = request.cookies.get(COOKIE_ADMIN)?.value;
+    if (token) {
+      const session = await verifyToken(token);
+      if (session && (session as { role?: string }).role === "admin") {
+        return NextResponse.redirect(new URL("/admin", request.url));
+      }
     }
   }
 
