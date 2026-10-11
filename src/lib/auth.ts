@@ -73,7 +73,7 @@ export const ADMIN_SESSION_TTL = 24 * 60 * 60;         // 24 hours
 // ─────────────────────────────────────────────────────────────────────────────
 export async function signToken(
   payload: Record<string, unknown>,
-  ttlSeconds: number
+  ttlSeconds: number = 7 * 24 * 60 * 60
 ): Promise<string> {
   const key = getSecretKey();
   return new SignJWT(payload)
@@ -82,6 +82,7 @@ export async function signToken(
     .setExpirationTime(Math.floor(Date.now() / 1000) + ttlSeconds)
     .sign(key);
 }
+
 
 // ─────────────────────────────────────────────────────────────────────────────
 // VERIFY TOKEN
