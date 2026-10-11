@@ -1,0 +1,29 @@
+# GSD files
+.gsd/
+.agent/
+.gemini/
+
+# Dependencies
+node_modules/
+
+# Next.js build
+.next/
+out/
+build/
+dist/
+
+# Environment variables
+.env
+.env*.local
+!.env.example
+
+# Logs and debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.turbo/
+.vercel/
+
+# Operating System
+.DS_Store
+Thumbs.db
