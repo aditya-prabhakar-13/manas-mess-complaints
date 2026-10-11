@@ -14,7 +14,7 @@ import { getISTDayBounds } from "../src/lib/date-utils";
 let passed = 0;
 let failed = 0;
 
-function assert(condition: boolean, message: string) {
+function assert(condition: boolean | undefined | null, message: string) {
   if (condition) {
     console.log(`  ✅ PASS: ${message}`);
     passed++;
