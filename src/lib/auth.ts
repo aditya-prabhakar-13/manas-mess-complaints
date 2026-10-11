@@ -132,25 +132,34 @@ export async function clearSessionCookie(name: string): Promise<void> {
 }
 
 export async function getSession<T extends JWTPayload>(
-  cookieName: string
+  cookieName: string,
+  tokenOverride?: string
 ): Promise<T | null> {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(cookieName)?.value;
-  if (!token) return null;
-  return verifyToken<T>(token);
+  if (tokenOverride) {
+    return verifyToken<T>(tokenOverride);
+  }
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get(cookieName)?.value;
+    if (!token) return null;
+    return verifyToken<T>(token);
+  } catch {
+    return null;
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // CONVENIENCE GETTERS
 // ─────────────────────────────────────────────────────────────────────────────
-export async function getBoarderSession(): Promise<BoarderSession | null> {
-  return getSession<BoarderSession>(COOKIE_BOARDER);
+export async function getBoarderSession(tokenOverride?: string): Promise<BoarderSession | null> {
+  return getSession<BoarderSession>(COOKIE_BOARDER, tokenOverride);
 }
 
-export async function getSmcSession(): Promise<SmcSession | null> {
-  return getSession<SmcSession>(COOKIE_SMC);
+export async function getSmcSession(tokenOverride?: string): Promise<SmcSession | null> {
+  return getSession<SmcSession>(COOKIE_SMC, tokenOverride);
 }
 
-export async function getAdminSession(): Promise<AdminSession | null> {
-  return getSession<AdminSession>(COOKIE_ADMIN);
+export async function getAdminSession(tokenOverride?: string): Promise<AdminSession | null> {
+  return getSession<AdminSession>(COOKIE_ADMIN, tokenOverride);
 }
+

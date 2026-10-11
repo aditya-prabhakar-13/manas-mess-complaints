@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSmcSession, getAdminSession } from "@/lib/auth";
+import { getSmcSession, getAdminSession, COOKIE_SMC, COOKIE_ADMIN } from "@/lib/auth";
 import { db } from "@/db";
 import { complaints } from "@/db/schema";
 import { and, eq, gte, lte, lt, desc } from "drizzle-orm";
@@ -20,8 +20,10 @@ const IST_OFFSET_MS = 5.5 * 60 * 60 * 1000;
 
 export async function GET(request: NextRequest) {
   // 1. Authenticate caller (SMC or Admin)
-  const smcSession = await getSmcSession();
-  const adminSession = await getAdminSession();
+  const smcToken = request.cookies.get(COOKIE_SMC)?.value;
+  const adminToken = request.cookies.get(COOKIE_ADMIN)?.value;
+  const smcSession = await getSmcSession(smcToken);
+  const adminSession = await getAdminSession(adminToken);
 
   if (!smcSession && !adminSession) {
     return NextResponse.json(
