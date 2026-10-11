@@ -1,0 +1,37 @@
+{
+  "name": "smc-complaint",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
+    "db:seed": "tsx src/db/seed.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^15.3.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "drizzle-orm": "^0.44.2",
+    "@neondatabase/serverless": "^0.10.4",
+    "jose": "^5.10.0",
+    "bcryptjs": "^3.0.2",
+    "zod": "^3.25.67",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/bcryptjs": "^3.0.0",
+    "typescript": "^5",
+    "drizzle-kit": "^0.31.1",
+    "tsx": "^4.19.4",
+    "dotenv": "^16.5.0"
+  }
+}

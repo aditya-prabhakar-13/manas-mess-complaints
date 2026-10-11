@@ -1,0 +1,491 @@
+/* ============================================================
+   MANAS HOSTEL MESS COMPLAINT PORTAL — GLOBAL STYLES
+   1-Bit Pixel Aesthetic System
+   Colors: #000000 (fg) | #ffffff (bg) | #767676 (disabled only)
+   ============================================================ */
+
+/* ── FONT ──────────────────────────────────────────────────── */
+@font-face {
+  font-family: "VT323";
+  src: url("/fonts/vt323.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── CSS VARIABLES ─────────────────────────────────────────── */
+:root {
+  --bg: #ffffff;
+  --fg: #000000;
+  --disabled: #767676;
+  --border: 2px solid #000000;
+  --shadow: 3px 3px 0px #000000;
+  --shadow-sm: 2px 2px 0px #000000;
+  --font: "VT323", "Courier New", Courier, monospace;
+  --radius: 0px;
+  --tap-target: 44px;
+  --container: 640px;
+}
+
+/* ── RESET ─────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0px !important;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  font-smooth: never;
+}
+
+/* ── BASE ──────────────────────────────────────────────────── */
+html {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 20px;
+  line-height: 1.4;
+  /* Force pixel-perfect text */
+  text-rendering: optimizeSpeed;
+  image-rendering: pixelated;
+}
+
+body {
+  min-height: 100dvh;
+  background-color: var(--bg);
+  color: var(--fg);
+  overflow-x: hidden;
+}
+
+/* ── LAYOUT ─────────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px;
+}
+
+/* ── TYPOGRAPHY ─────────────────────────────────────────────── */
+h1 {
+  font-family: var(--font);
+  font-size: 2rem;
+  font-weight: normal;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+h2 {
+  font-family: var(--font);
+  font-size: 1.5rem;
+  font-weight: normal;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-family: var(--font);
+  font-size: 1.25rem;
+  font-weight: normal;
+  letter-spacing: 0.05em;
+}
+
+p, span, label, td, th {
+  font-family: var(--font);
+  font-size: 1rem;
+}
+
+a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  background-color: var(--fg);
+  color: var(--bg);
+  text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+
+/* ── BANNER / HEADER ─────────────────────────────────────────── */
+.banner {
+  width: 100%;
+  border: var(--border);
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.banner h1 {
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+
+.banner .subtitle {
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+}
+
+/* ── CARD ────────────────────────────────────────────────────── */
+.card {
+  width: 100%;
+  border: var(--border);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+}
+
+.card-header {
+  border-bottom: var(--border);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ── FORM ELEMENTS ───────────────────────────────────────────── */
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+label {
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+select {
+  width: 100%;
+  min-height: var(--tap-target);
+  padding: 8px 12px;
+  border: var(--border);
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 1.1rem;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+input[type="text"]:focus-visible,
+input[type="password"]:focus-visible,
+input[type="email"]:focus-visible,
+input[type="number"]:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--fg);
+  outline-offset: 0px;
+}
+
+input[type="text"]:disabled,
+input[type="password"]:disabled,
+select:disabled {
+  color: var(--disabled);
+  border-color: var(--disabled);
+  cursor: not-allowed;
+}
+
+/* SELECT: pixel arrow */
+select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M0 0h12L6 8z' fill='%23000'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+select:disabled {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M0 0h12L6 8z' fill='%23767676'/%3E%3C/svg%3E");
+}
+
+textarea {
+  width: 100%;
+  min-height: 160px;
+  padding: 10px 12px;
+  border: var(--border);
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: vertical;
+  outline: none;
+}
+
+textarea:focus-visible {
+  outline: 3px solid var(--fg);
+  outline-offset: 0px;
+}
+
+/* ── CUSTOM RADIO BUTTONS (pixel squares) ────────────────────── */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: var(--tap-target);
+  padding: 6px 0;
+  cursor: pointer;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.radio-label input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: var(--border);
+  background-color: var(--bg);
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.radio-label input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--fg);
+}
+
+.radio-label input[type="radio"]:focus-visible {
+  outline: 3px solid var(--fg);
+  outline-offset: 2px;
+}
+
+.radio-label input[type="radio"]:disabled {
+  border-color: var(--disabled);
+  cursor: not-allowed;
+}
+
+.radio-label input[type="radio"]:disabled + .radio-text {
+  color: var(--disabled);
+}
+
+.radio-label.disabled {
+  cursor: not-allowed;
+}
+
+/* ── BUTTONS ─────────────────────────────────────────────────── */
+.btn {
+  display: inline-block;
+  min-height: var(--tap-target);
+  padding: 8px 24px;
+  border: var(--border);
+  background-color: var(--fg);
+  color: var(--bg);
+  font-family: var(--font);
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: none;
+  user-select: none;
+  width: 100%;
+}
+
+.btn:hover {
+  background-color: var(--fg);
+  color: var(--bg);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--fg);
+  outline-offset: 3px;
+}
+
+.btn:disabled {
+  background-color: var(--disabled);
+  border-color: var(--disabled);
+  box-shadow: 3px 3px 0px var(--disabled);
+  cursor: not-allowed;
+  color: var(--bg);
+}
+
+.btn-outline {
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+.btn-outline:hover {
+  background-color: var(--fg);
+  color: var(--bg);
+}
+
+/* ── ALERTS / MESSAGES ───────────────────────────────────────── */
+.alert {
+  width: 100%;
+  padding: 12px 16px;
+  border: var(--border);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.alert-error {
+  border-left: 6px solid var(--fg);
+}
+
+.alert-success {
+  border-left: 6px solid var(--fg);
+  background-color: var(--fg);
+  color: var(--bg);
+}
+
+/* ── CHAR COUNTER ────────────────────────────────────────────── */
+.char-counter {
+  font-size: 0.85rem;
+  text-align: right;
+  letter-spacing: 0.05em;
+  color: var(--fg);
+}
+
+.char-counter.at-limit {
+  color: var(--fg);
+  font-weight: bold;
+}
+
+/* ── INFO ROW (student banner on complaint form) ─────────────── */
+.info-row {
+  width: 100%;
+  border: var(--border);
+  padding: 10px 14px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background-color: var(--fg);
+  color: var(--bg);
+}
+
+/* ── PIXEL DIVIDER ───────────────────────────────────────────── */
+.divider {
+  width: 100%;
+  border: none;
+  border-top: var(--border);
+  margin: 20px 0;
+}
+
+/* ── TABLE ───────────────────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: var(--border);
+}
+
+th, td {
+  border: var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+th {
+  background-color: var(--fg);
+  color: var(--bg);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+tr:nth-child(even) td {
+  background-color: #f0f0f0;
+}
+
+/* ── PAGINATION ──────────────────────────────────────────────── */
+.pagination {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--tap-target);
+  min-height: var(--tap-target);
+  padding: 4px 12px;
+  border: var(--border);
+  font-family: var(--font);
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--fg);
+  background-color: var(--bg);
+}
+
+.page-link:hover,
+.page-link.active {
+  background-color: var(--fg);
+  color: var(--bg);
+}
+
+/* ── RESPONSIVE: mobile first ────────────────────────────────── */
+@media (min-width: 640px) {
+  html {
+    font-size: 22px;
+  }
+
+  .banner h1 {
+    font-size: 2rem;
+  }
+
+  .btn {
+    width: auto;
+    min-width: 200px;
+  }
+}
