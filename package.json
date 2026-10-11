@@ -10,7 +10,8 @@
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "db:seed": "tsx src/db/seed.ts",
-    "test": "tsx tests/date-utils.test.ts && tsx tests/auth.test.ts && tsx tests/boarder-auth.test.ts && tsx tests/complaint-limits.test.ts && tsx tests/gala.test.ts && tsx tests/complaint-submission.test.ts && tsx tests/smc-auth.test.ts && tsx tests/complaints-query.test.ts && tsx tests/archive-query.test.ts && tsx tests/export.test.ts && tsx tests/admin-auth.test.ts && tsx tests/roster-parser.test.ts && tsx tests/admin-management.test.ts && tsx tests/moderation-lockouts.test.ts && tsx tests/qr-generator.test.ts && tsx tests/admin-export.test.ts && tsx tests/security-hardening.test.ts",
+    "test": "tsx tests/date-utils.test.ts && tsx tests/auth.test.ts && tsx tests/boarder-auth.test.ts && tsx tests/complaint-limits.test.ts && tsx tests/gala.test.ts && tsx tests/complaint-submission.test.ts && tsx tests/smc-auth.test.ts && tsx tests/complaints-query.test.ts && tsx tests/archive-query.test.ts && tsx tests/export.test.ts && tsx tests/admin-auth.test.ts && tsx tests/roster-parser.test.ts && tsx tests/admin-management.test.ts && tsx tests/moderation-lockouts.test.ts && tsx tests/qr-generator.test.ts && tsx tests/admin-export.test.ts && tsx tests/security-hardening.test.ts && tsx tests/acceptance-criteria.test.ts && tsx tests/bundle-performance.test.ts",
+
 
     "typecheck": "tsc --noEmit"
   },
