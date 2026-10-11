@@ -11,10 +11,9 @@ const connectionString =
   process.env.DATABASE_URL ||
   "postgresql://placeholder:placeholder@ep-mock.us-east-1.aws.neon.tech/neondb?sslmode=require";
 
-if (!process.env.DATABASE_URL && process.env.NODE_ENV === "production") {
-  throw new Error(
-    "DATABASE_URL environment variable is not set. " +
-    "Please configure DATABASE_URL in your production environment."
+if (!process.env.DATABASE_URL) {
+  console.warn(
+    "[db] DATABASE_URL not configured. Database operations will require DATABASE_URL in .env.local"
   );
 }
 

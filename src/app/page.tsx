@@ -8,6 +8,8 @@ import { computeYearOfStudy } from "@/lib/date-utils";
 import { isGalaDinnerDate, getAvailableMeals } from "@/lib/gala";
 import { ComplaintForm } from "./ComplaintForm";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const session = await getBoarderSession();
   if (!session) {

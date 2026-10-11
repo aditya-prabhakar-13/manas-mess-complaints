@@ -4,6 +4,8 @@ import { getBoarderSession } from "@/lib/auth";
 import { logoutBoarderAction } from "@/actions/boarder-auth";
 import { formatISTDateTime } from "@/lib/date-utils";
 
+export const dynamic = "force-dynamic";
+
 export default async function DonePage() {
   const session = await getBoarderSession();
   if (!session) {
