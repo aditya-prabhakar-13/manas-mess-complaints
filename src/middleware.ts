@@ -9,7 +9,7 @@ import {
 // ─────────────────────────────────────────────────────────────────────────────
 // ROUTE MATCHERS
 // ─────────────────────────────────────────────────────────────────────────────
-const BOARDER_PROTECTED = ["/"];
+const BOARDER_PROTECTED = ["/", "/done"];
 const BOARDER_AUTH_ROUTES = ["/login"];
 
 const SMC_PROTECTED = ["/smc/complaints", "/smc/archive"];
