@@ -7,12 +7,14 @@ import * as schema from "./schema";
 // Uses Neon's serverless HTTP driver — ideal for Next.js serverless functions
 // on Vercel (no persistent connection pool needed).
 // ─────────────────────────────────────────────────────────────────────────────
-const connectionString = process.env.DATABASE_URL;
+const connectionString =
+  process.env.DATABASE_URL ||
+  "postgresql://placeholder:placeholder@ep-mock.us-east-1.aws.neon.tech/neondb?sslmode=require";
 
-if (!connectionString) {
+if (!process.env.DATABASE_URL && process.env.NODE_ENV === "production") {
   throw new Error(
     "DATABASE_URL environment variable is not set. " +
-    "Copy .env.example to .env.local and fill in your Neon connection string."
+    "Please configure DATABASE_URL in your production environment."
   );
 }
 

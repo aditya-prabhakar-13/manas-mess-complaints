@@ -7,7 +7,7 @@
  */
 import { db } from "@/db";
 import { loginAttempts } from "@/db/schema";
-import { lt, and, eq, gte, count } from "drizzle-orm";
+import { and, eq, gte, or, count, desc } from "drizzle-orm";
 
 export const LOGIN_WINDOW_MINUTES = 15;
 export const LOGIN_MAX_FAILURES = 5;
@@ -27,10 +27,9 @@ export interface LockoutStatus {
  * Check whether a given identifier (roll number) OR IP address is currently
  * locked out due to too many failed login attempts.
  *
- * Reads the most recent failed attempt timestamps from `login_attempts`.
+ * Reads recent failed attempt timestamps from `login_attempts`.
  * If >= 5 failures within the last 15 minutes exist for either the roll number
- * or the IP, the lockout is active until 15 minutes after the FIRST failure
- * in that burst.
+ * or the IP, the lockout is active until 15 minutes after the latest failure.
  */
 export async function checkLoginLockout(
   identifier: string,
@@ -68,12 +67,28 @@ export async function checkLoginLockout(
   const ipCount = ipFailures?.count ?? 0;
 
   if (identifierCount >= LOGIN_MAX_FAILURES || ipCount >= LOGIN_MAX_FAILURES) {
-    // Compute remaining lockout time based on the earliest failure in the window
-    const now = Date.now();
-    const lockedUntilMs = windowStart.getTime() + LOGIN_WINDOW_MINUTES * 60 * 1000;
-    const remainingMs = Math.max(0, lockedUntilMs - now);
+    // Find the latest failure to calculate lockedUntil
+    const [latest] = await db
+      .select({ attemptedAt: loginAttempts.attemptedAt })
+      .from(loginAttempts)
+      .where(
+        and(
+          or(
+            eq(loginAttempts.identifier, identifier.toUpperCase()),
+            eq(loginAttempts.ipAddress, ip)
+          ),
+          eq(loginAttempts.outcome, "failure"),
+          gte(loginAttempts.attemptedAt, windowStart)
+        )
+      )
+      .orderBy(desc(loginAttempts.attemptedAt))
+      .limit(1);
+
+    const latestMs = latest?.attemptedAt ? new Date(latest.attemptedAt).getTime() : Date.now();
+    const lockedUntilMs = latestMs + LOGIN_WINDOW_MINUTES * 60 * 1000;
+    const remainingMs = Math.max(0, lockedUntilMs - Date.now());
     const remainingSeconds = Math.ceil(remainingMs / 1000);
-    const remainingMinutes = Math.ceil(remainingSeconds / 60);
+    const remainingMinutes = Math.max(1, Math.ceil(remainingSeconds / 60));
 
     return {
       isLocked: true,

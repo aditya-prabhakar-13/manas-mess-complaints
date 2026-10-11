@@ -10,6 +10,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "db:seed": "tsx src/db/seed.ts",
+    "test": "tsx tests/date-utils.test.ts && tsx tests/auth.test.ts && tsx tests/boarder-auth.test.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
