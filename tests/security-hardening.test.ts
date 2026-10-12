@@ -6,7 +6,7 @@
 import { NextRequest } from "next/server";
 import { middleware } from "../src/middleware";
 import { signToken, COOKIE_ADMIN } from "../src/lib/auth";
-import nextConfig from "../next.config";
+import nextConfig from "../next.config.mjs";
 import {
   MAX_COMPLAINTS_PER_MEAL,
   MAX_COMPLAINTS_PER_DAY_STUDENT,

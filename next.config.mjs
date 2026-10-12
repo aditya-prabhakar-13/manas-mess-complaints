@@ -1,6 +1,5 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   // Disable React strict mode for production performance
   reactStrictMode: true,
 
@@ -53,7 +52,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-
 };
 
 export default nextConfig;

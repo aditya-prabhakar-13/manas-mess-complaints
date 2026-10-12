@@ -11,16 +11,15 @@
     "db:studio": "drizzle-kit studio",
     "db:seed": "tsx src/db/seed.ts",
     "test": "tsx tests/date-utils.test.ts && tsx tests/auth.test.ts && tsx tests/boarder-auth.test.ts && tsx tests/complaint-limits.test.ts && tsx tests/gala.test.ts && tsx tests/complaint-submission.test.ts && tsx tests/smc-auth.test.ts && tsx tests/complaints-query.test.ts && tsx tests/archive-query.test.ts && tsx tests/export.test.ts && tsx tests/admin-auth.test.ts && tsx tests/roster-parser.test.ts && tsx tests/admin-management.test.ts && tsx tests/moderation-lockouts.test.ts && tsx tests/qr-generator.test.ts && tsx tests/admin-export.test.ts && tsx tests/security-hardening.test.ts && tsx tests/acceptance-criteria.test.ts && tsx tests/bundle-performance.test.ts && tsx tests/env-validation.test.ts",
-
-
-
-
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.10.4",
+    "@types/node": "^20",
     "@types/pdfkit": "^0.17.6",
     "@types/qrcode": "^1.5.6",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "bcryptjs": "^3.0.2",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
@@ -31,17 +30,13 @@
     "qrcode": "^1.5.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "typescript": "^5",
     "xlsx": "^0.18.5",
     "zod": "^3.25.67"
   },
   "devDependencies": {
-    "@types/bcryptjs": "^3.0.0",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
     "dotenv": "^16.5.0",
     "drizzle-kit": "^0.31.1",
-    "tsx": "^4.19.4",
-    "typescript": "^5"
+    "tsx": "^4.19.4"
   }
 }
