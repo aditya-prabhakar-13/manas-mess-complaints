@@ -3,7 +3,10 @@
  * Run with: npm run db:seed
  * Requires DATABASE_URL in .env.local
  */
-import "dotenv/config";
+import * as dotenv from "dotenv";
+dotenv.config({ path: ".env.local" });
+dotenv.config();
+
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import * as bcrypt from "bcryptjs";
